@@ -1,0 +1,88 @@
+doctype html
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    // Meta, title, CSS, favicons, etc.
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Address book
+    // Bootstrap
+    link(href='/vendors/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    // Font Awesome
+    link(href='/vendors/font-awesome/css/font-awesome.min.css', rel='stylesheet')
+    // NProgress
+    link(href='/vendors/nprogress/nprogress.css', rel='stylesheet')
+    // Custom Theme Style
+    link(href='/css/custom.min.css', rel='stylesheet')
+    //datepicker
+    link(href='/vendors/bootstrap-daterangepicker/daterangepicker.css', rel='stylesheet')
+  body.nav-md
+    .container.body
+      .main_container
+        .col-md-3.left_col
+          .left_col.scroll-view
+            .navbar.nav_title(style='border: 0;')
+              a.site_title(href='/')
+                i.fa.fa-paw
+                span Список задач
+            .clearfix
+            // menu profile quick info
+            .profile.clearfix
+              .profile_pic
+                img.img-circle.profile_img(src='../images/user.png', alt='...')
+              .profile_info
+                span Пользователь,
+                h2 Test user
+              .clearfix
+            // /menu profile quick info
+            br
+            // sidebar menu
+            #sidebar-menu.main_menu_side.hidden-print.main_menu
+              .menu_section
+                // <h3>General</h3>
+                ul.nav.side-menu
+                  li
+                    a(href='/')
+                      i.fa.fa-home
+                      | ToDo
+                  li
+                    a
+                      i.fa.fa-edit
+                      |  Действия
+                      span.fa.fa-chevron-down
+                    ul.nav.child_menu
+                      li
+                        a(href='/') Все задачи
+                      li
+                        a(href='/') Мои задачи
+                        li
+                          a(href='/showallusers') Пользователи
+                      li
+                        a(href='/newuser/add') Добавить пользователя
+            // /sidebar menu
+        // page content
+        block content
+        // /page content
+        // footer content
+        footer
+          .pull-right
+            | Adsress book Oleg Shilovskiy
+          .clearfix
+        // /footer content
+    // jQuery
+    script(src='/vendors/jquery/dist/jquery.min.js')
+    // Bootstrap
+    script(src='/vendors/bootstrap/dist/js/bootstrap.min.js')
+    // FastClick
+    script(src='/vendors/fastclick/lib/fastclick.js')
+    // NProgress
+    script(src='/vendors/nprogress/nprogress.js')
+    // Custom Theme Scripts
+    script(src='/js/custom.js')
+    //parsley
+    script(src='/vendors/parsleyjs/dist/parsley.min.js')
+    //datapicker
+    script(src='/vendors/moment/min/moment.min.js')
+    script(src='/vendors/bootstrap-daterangepicker/daterangepicker.js')
+

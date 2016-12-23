@@ -1,0 +1,89 @@
+extends layout
+
+block content
+  .right_col(role='main')
+    div
+      .page-title
+        .title_left
+          h3=title
+        .title_right
+          .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+            .input-group
+              form(action='/search', style="display: inline-table;")
+                input.form-control(name='SearchStr' type='text', placeholder='Поиск...')
+                span.input-group-btn
+                  button.btn.btn-default(type='button') Go!
+      .clearfix
+      .row
+        .col-md-12.col-sm-12.col-xs-12
+          .x_panel
+            .x_title
+              h2 #{title}
+              .clearfix
+            //Основной контент
+            .x_content
+
+
+              .table-responsive
+                table.table.table-striped.jambo_table.bulk_action
+                  thead
+                    tr.headings
+                      th
+                      th.column-title Название задачи
+                      th.column-title Описание задачи
+                      th.column-title Ответстенный
+                      th.column-title Статус
+                      th.column-title Крайний срок
+                      th.column-title.no-link.last
+                        span.nobr Действие
+                  tbody
+                    each doc,i in docs
+                     tr(class=(i % 2 == 0) ? 'odd.pointer' : 'even.pointer')
+                     td
+                       input.flat(type='checkbox', name='table_records' id=doc._id)
+                       td=doc.Name
+                       td=doc.Description
+                       td=doc.User!=undefined?doc.User.LName:''
+                       td=doc.State!=undefined?doc.State:''
+                       td=doc.Deadline
+                       td.last
+                         a(href='/showtask/'+doc._id) Просмотр
+            .ln_solid
+              .form-group
+                .col-md-2
+                  //button.btn.btn-primary(type='submit') Cancel
+                  button#deleteContacts.btn.btn-success(type='button') Удалить выбранные задачи
+            .x_panel
+              .x_title
+                h2
+                  | Новая задача
+                .clearfix
+                // start form for validation
+                form#taask-form(action='/edittaskdata/save',data-parsley-validate='', novalidate='')
+                  label(for='Information') Название :
+                  input#Information.form-control(type='text', name='Information', required='')
+                  P
+                    label(for='message') Краткое описание :
+                    textarea#message.form-control(required='required', name='message', data-parsley-trigger='keyup', data-parsley-minlength='20', data-parsley-maxlength='100', data-parsley-minlength-message='Come on! You need to enter at least a 20 caracters long comment..', data-parsley-validation-threshold='10')
+                    br
+                  p
+                    label(for='User') Испольнитель
+                    select#User.form-control(required='')
+                      option(value='') Выбрать..
+                      each ur in users
+                      option(value=ur._id) 4t4
+                  p
+                    label(for='State') Статус
+                    select#State.form-control(required='')
+                      option(value='') Выбрать..
+                      option(value='New') Press
+                      option(value='InProgress') InProgress
+                      option(value='Closed') Closed
+                  P
+                    label(for='deadline')
+                      | Крайний срок
+                    span.required *
+                    .col-md-6.col-sm-6.col-xs-12
+                    input#deadline.date-picker.form-control.col-md-7.col-xs-12(required='required', type='text',name='deadline')
+                    span.btn.btn-primary Добавить задачу
+                // end form for validations

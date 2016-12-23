@@ -1,0 +1,61 @@
+extends layout
+
+block content
+  .right_col(role='main')
+    div
+      .page-title
+        .title_left
+          h3=title
+        .title_right
+          .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+            .input-group
+              form(action='/search', style="display: inline-table;")
+                input.form-control(name='SearchStr' type='text', placeholder='Поиск...')
+                span.input-group-btn
+                  button.btn.btn-default(type='button') Go!
+      .clearfix
+      .row
+        .col-md-12.col-sm-12.col-xs-12
+          .x_panel
+            .x_title
+              h2 #{title}
+              .clearfix
+            //Основной контент
+            .x_content
+
+
+              .table-responsive
+                table.table.table-striped.jambo_table.bulk_action
+                  thead
+                    tr.headings
+                      th
+                      th.column-title Фамилия
+                      th.column-title Имя
+                      th.column-title Телефон
+                      th.column-title Email
+                      th.column-title Skype
+                      th.column-title.no-link.last
+                        span.nobr Действие
+                      th.bulk-actions(colspan='7')
+                        a.antoo(style='color:#fff; font-weight:500;')
+                          | Bulk Actions (
+                          span.action-cnt
+                          |  )
+                          i.fa.fa-chevron-down
+                  tbody
+                    each doc,i in docs
+                     tr(class=(i % 2 == 0) ? 'odd.pointer' : 'even.pointer')
+                     td
+                       input.flat(type='checkbox', name='table_records' id=doc._id)
+                       td=doc.LName
+                       td=doc.Name
+                       td=doc.Phone
+                       td=doc.OtherContacts!=undefined?doc.OtherContacts.Email:''
+                       td=doc.OtherContacts!=undefined?doc.OtherContacts.Skype:''
+                       td.last
+                         a(href='/showuser/'+doc._id) Просмотр
+            .ln_solid
+              .form-group
+                .col-md-2
+                  //button.btn.btn-primary(type='submit') Cancel
+                  button#deleteContacts.btn.btn-success(type='button') Удалить выбранное

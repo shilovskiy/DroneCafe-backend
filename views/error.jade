@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  .right_col(role='main')
+    div
+      .page-title
+        .title_left
+          h3=title
+        .title_right
+          .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+            .input-group
+              form(action='/search', style="display: inline-table;")
+                input.form-control(name='SearchStr' type='text', placeholder='Поиск...')
+                span.input-group-btn
+                  button.btn.btn-default(type='button') Go!
+      .clearfix
+      .row
+        .col-md-12.col-sm-12.col-xs-12
+          .x_panel
+            .x_title
+              h2 #{title}
+              .clearfix
+                  .x_content
+                  .col-md-12
+                    .col-middle
+                      .text-center
+                        h1.error-number 500
+                        h2.page-title=message
+                        br
+                        p
+                          | #{error.stack}
+
+                        .mid_center
+                          h3 Поиск
+                          form(action='/search', style="display: inline-table;")
+                            .col-xs-12.form-group.pull-right.top_search
+                              .input-group
+                                input.form-control(name='SearchStr',type='text', placeholder='Поиск...')
+                                span.input-group-btn
+                                  button.btn.btn-default(type='Submit') Go!
+

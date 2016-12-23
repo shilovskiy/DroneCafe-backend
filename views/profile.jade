@@ -1,0 +1,71 @@
+extends layout
+
+block content
+  .right_col(role='main')
+    div
+        .page-title
+            .title_left
+                h3=title
+            .title_right
+                .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+                    .input-group
+                        form(action='/search', style="display: inline-table;")
+                            input.form-control(name='SearchStr' type='text', placeholder='Поиск...')
+                            span.input-group-btn
+                                button.btn.btn-default(type='submit') Go!
+        .clearfix
+        .row
+            .col-md-12.col-sm-12.col-xs-12
+                .x_panel
+                    .x_title
+                        ul.nav.navbar-right.panel_toolbox
+                            li
+                                a.collapse-link
+                                    i.fa.fa-chevron-up
+                            li.dropdown
+                                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                                    i.fa.fa-wrench
+                            li
+                                a.close-link
+                                    i.fa.fa-close
+                        .clearfix
+                    .x_content
+                        form.form-horizontal.form-label-left(action=nextaction,data-parsley-validate)
+                            span.section=docs.Name +''+ (docs.LName==undefined?'':docs.LName)
+                            .item.form-group
+                                label.control-label.col-md-3.col-sm-3.col-xs-12(for='Name')
+                                    | Имя
+                                    span.required *
+                                .col-md-6.col-sm-6.col-xs-12
+                                    input#Name.form-control.col-md-7.col-xs-12(data-validate-length-range='6', data-validate-words='2', name='Name', placeholder='Введите имя', type='text',value=docs.Name)
+                            .item.form-group
+                                label.control-label.col-md-3.col-sm-3.col-xs-12(for='LName')
+                                    | Фамилия
+                                    span.required *
+                                .col-md-6.col-sm-6.col-xs-12
+                                    input#Lname.form-control.col-md-7.col-xs-12(name='LName', placeholder='Введите фамилию', type='text',value=docs.LName)
+                            .item.form-group
+                                label.control-label.col-md-3.col-sm-3.col-xs-12(for='email')
+                                    | Email
+                                    span.required *
+                                .col-md-6.col-sm-6.col-xs-12
+                                    input#email.form-control.col-md-7.col-xs-12(type='email',name='Email', data-validate-linked="email", required='required',value=docs.OtherContacts!=undefined?docs.OtherContacts.Email:'')
+
+                            .item.form-group
+                                label.control-label.col-md-3.col-sm-3.col-xs-12(for='number')
+                                    | Номер телефона
+                                .col-md-6.col-sm-6.col-xs-12
+                                    input#number.form-control.col-md-7.col-xs-12(type='text', name='Phone',data-parsley-pattern="^(\\+\\d.+)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$", placeholder="+7(964) 345-4544" value=docs.Phone)
+                                    span.fa.fa-phone.form-control-feedback.right(aria-hidden='true')
+                            .item.form-group
+                                label.control-label.col-md-3.col-sm-3.col-xs-12(for='skype')
+                                    | Skype
+                                .col-md-6.col-sm-6.col-xs-12
+                                    input#skype.form-control.col-md-7.col-xs-12(name='Skype', value=docs.OtherContacts!=undefined?docs.OtherContacts.Skype:'')
+
+                            .ln_solid
+                            .form-group
+                                .col-md-6.col-md-offset-3
+                                    //button.btn.btn-primary(type='submit') Cancel
+                                    button#send.btn.btn-success(type='submit') Submit
+

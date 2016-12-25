@@ -22,12 +22,13 @@ var UserSchema = new Schema({
         }
     }
 );
-
-var UserModel = db.mongoose.model('Users', UserSchema);
-
 UserSchema.virtual('fullname').get(function(){
     return this.LName + ' ' + this.Name;
 
 });
+
+var UserModel = db.mongoose.model('Users', UserSchema);
+
+
 
 module.exports = UserModel;

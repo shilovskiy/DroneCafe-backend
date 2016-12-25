@@ -1,27 +1,31 @@
 var express = require('express');
 var router = express.Router();
-var TaskModel = require('../model/tasks');
-var UserModel = require('../model/users');
 
+var UserModel = require('../model/users');
+var StateModel = require('../model/states');
+var TaskModel = require('../model/tasks');
+var async = require("async");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
+    async.series([
 
-    TaskModel.find({})
-        .populate('User')
-        .exec((err, docs)=> {
-        if (err) {
-            console.log(err);
-        } else if (docs.length) {
-            console.log('Found:', docs);
-        } else {
-            console.log('No document(s) found with defined "find" criteria!');
+        function (callback) {
+            TaskModel.find({}).populate('User').populate('State').sort('-Deadline').exec(callback);
+        },
+        function (callback) {
+            UserModel.find({}).exec(callback);
+        },
+        function (callback) {
+            StateModel.find({}).exec(callback);
+        },
+        ]
+        ,function(err,results){
+            res.render('index', { "docs": results[0], "userList":results[1], "stateList":results[2], "title":"ToDo"} );
         }
-            UserModel.find({},(err, users) =>{
-                res.render('index', { "docs": docs, "userList":users, "title":"ToDo"} );
-            });
-    });
+    );
+
 });
 
 module.exports = router;

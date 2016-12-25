@@ -43,6 +43,7 @@ router.get('/save', function(req, res, next) {
             next(err);
         } else {
             console.log(`Inserted ${reults} contact with "_id" are: ${JSON.stringify(reults)}`);
+            res.redirect(301,"/showallusers");
         }
     });
 

@@ -12,15 +12,14 @@ var TaskSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'Users'
     },
-    State:String,
-    Deadline:Date
+    State:{
+        type:Schema.ObjectId,
+        ref:'States'
+    },
+    Deadline:String
 
 });
 
 var TaskModel= db.mongoose.model('Task', TaskSchema);
 
-// TaskModel.methods.getStates = function(callback){
-//
-//     return this.find()
-// }
 module.exports = TaskModel;

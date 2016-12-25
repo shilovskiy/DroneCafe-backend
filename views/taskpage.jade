@@ -1,0 +1,61 @@
+extends layout
+
+block content
+  .right_col(role='main')
+    div
+      .page-title
+        .title_left
+          h3=title
+        .title_right
+          .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+            .input-group
+              form(action='/search', style="display: inline-table;")
+                input.form-control(name='SearchStr' type='text', placeholder='Поиск...')
+                span.input-group-btn
+                  button.btn.btn-default(type='button') Go!
+      .clearfix
+      .row
+        .col-md-12.col-sm-12.col-xs-12
+          .x_panel
+            .x_title
+              h2 #{title}
+              .clearfix
+            //Основной контент
+            .x_content
+            .x_panel
+              .x_title
+                .clearfix
+                // start form for validation
+                form#taask-form(action='/edittaskdata/save',data-parsley-validate='', novalidate='')
+                  input#Id(type='hidden', name='Id',value=docs._id)
+                  label(for='Information') Название :
+                  input#Information.form-control(type='text', name='Information', required='', value=docs.Name)
+                  P
+                    label(for='Description') Краткое описание :
+                    textarea#Description.form-control(required='required', name='Description', data-parsley-trigger='keyup', data-parsley-minlength='20', data-parsley-maxlength='100', data-parsley-minlength-message='Введите минимум 20 знаков...', data-parsley-validation-threshold='10')=value=docs.Description
+                  p
+                    label(for='User') Исполнитель
+                    select#User.form-control(required='', name='User')
+                      option(value='') Выбрать..
+                      each ur in userList
+                        if ur._id.toString()==docs.User._id.toString()
+                          option(value=ur._id, selected)=ur.fullname
+                        else
+                          option(value=ur._id)=ur.fullname
+                  p
+                    label(for='State') Статус
+                    select#State.form-control(required='', name='State')
+                      option(value='') Выбрать...
+                      each st in stateList
+                        if st._id.toString()==docs.State._id.toString()
+                          option(value=st._id,selected)=st.Name
+                        else
+                          option(value=st._id)=st.Name
+                  P
+                    label(for='Deadline')
+                      | Крайний срок
+                    span.required *
+                    .col-md-6.col-sm-6.col-xs-12
+                    input#Deadline.date-picker.form-control.col-md-7.col-xs-12(required='required', type='text',name='Deadline',value=docs.Deadline)
+                    button#addTask.btn.btn.btn-primary(type='submit') Сохранить
+                // end form for validations

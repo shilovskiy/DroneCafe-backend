@@ -19,9 +19,13 @@ db.mongoose.connect(dburl);
 
 var index = require('./routes/index');
 var user = require('./routes/showuser');
+var task = require('./routes/showtask');
 var users = require('./routes/users');
 var editusers = require('./routes/edituserdata');
 var edittasks = require('./routes/edittaskdata');
+
+var statistic = require('./routes/statistic');
+
 var search = require('./routes/search');
 var app = express();
 
@@ -40,10 +44,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/showallusers', users);
 app.use('/showuser', user);
+app.use('/showtask', task);
 app.use('/edituserdata', editusers);
+app.use('/edittaskdata', edittasks);
+
 app.use('/newuser', editusers);
 app.use('/search', search);
 
+app.use('/statistic', statistic);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Страница не найдена');
@@ -60,6 +68,19 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error',{'message':err.message,'error':err});
+});
+
+db.mongoose.connection.on('connected', function () {
+    console.log('Mongoose default connection open to ' + dburl);
+    var StateModel = require('./model/states');
+    let states = ['New','In Progress','Closed'];
+
+    for(let s of states){
+        StateModel.findOneAndUpdate({Name:s},{Name:s},{ upsert: true, new: true },function(err, numberAffected, raw){
+            console.log(err, numberAffected, raw);
+        });
+
+    }
 });
 
 module.exports = app;

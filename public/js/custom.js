@@ -75,13 +75,59 @@ $(document).ready(function(){
                 location.reload();
             }
         });
-        //$.post("/edituserdata/del",JSON.stringify(rows_selected) );
+    });
+
+    $('button#deleteTasks').click(function () {
+
+        jQuery.ajax ({
+            url: "/edittaskdata/del",
+            type: "DELETE",
+            data: JSON.stringify(rows_selected),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function(res){
+                console.log("deleted row");
+                location.reload();
+            },
+            error: function(err){
+                console.log(err);
+                location.reload();
+            }
+        });
     });
 
     //bootstrap-daterangepicke
     //
-        $('#deadline').daterangepicker({
+        $('#Deadline').daterangepicker({
             singleDatePicker: true,
+            locale: {
+                "firstDay": 1,
+                format: 'DD.MM.YYYY',
+                daysOfWeek: [
+                    'ВС',
+                    'ПН',
+                    'ВТ',
+                    'СР',
+                    'Чт',
+                    'Пт',
+                    'СБ'
+                ],
+            },
+
+            "monthNames": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
             calender_style: "picker_4"
         }, function(start, end, label) {
             console.log(start.toISOString(), end.toISOString(), label);

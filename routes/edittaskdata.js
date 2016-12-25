@@ -7,66 +7,59 @@ var db = require('../model/db');
 var TaskModel = require('../model/tasks');
 var UserModel = require('../model/users');
 
-/* GET users profile. */
-
 
 
 router.get('/add', function(req, res, next) {
-    let docs=[{Name:'',LName:'',Email:'',Phone:'',Skype:''}];
 
-    res.render('profile', { 'docs': docs[0],'title':'Адресная книга','nextaction':'/edituserdata/save'} );//'docs': null,
-});
-
-
-router.get('/save', function(req, res, next) {
     let Task =new TaskModel();
 
-    if (req.query.Name!=""){
-        Cntct.Name = req.query.Name
+    if (req.query.Information!=""){
+        Task.Name = req.query.Information
     }
-    if (req.query.LName!=""){
-        Cntct.LName = req.query.LName
+    if (req.query.Description!=""){
+        Task.Description = req.query.Description
     }
-    if (req.query.Phone!=""){
-        Cntct.Phone = req.query.Phone
+    if (req.query.Deadline!=""){
+        Task.Deadline = req.query.Deadline;//dateformat(req.query.Deadline,'dd.mm.yyyy');
     }
-    if (req.query.Email!=""){
-        Cntct.Email = req.query.Email
+    if (req.query.State!=""){
+        Task.State = req.query.State
     }
-    if (req.query.Skype!=""){
-        Cntct.Skype = req.query.Skype
+    if (req.query.User!=""){
+        Task.User = req.query.User
     }
 
-    Cntct.save((err,reults)=> {
+    Task.save((err,reults)=> {
         if (err) {
             console.log(err);
-            var err = new Error("Имя или Фамилия должны быть заполнены ОБЯЗАТЕЛЬНО!!!");
+            var err = new Error(`Произошла ошибка ${err}`);
             next(err);
         } else {
             console.log(`Inserted ${reults} contact with "_id" are: ${JSON.stringify(reults)}`);
+            res.redirect(301,"/");
         }
     });
 
 });
 
 
-router.get('/:id', function(req, res, next) {
-    let id = require('mongodb').ObjectID(req.params.id);
-    let Name = req.query.Name;
-    let LName = req.query.LName;
-    let Email = req.query.Email;
-    let Phone = req.query.Phone;
-    let Skype = req.query.Skype;
+router.get('/save', function(req, res, next) {
+    var id = require('mongodb').ObjectID(req.query.Id);
+    var Information = req.query.Information;
+    var Description = req.query.Description;
+    var Deadline = req.query.Deadline;
+    var State = req.query.State;
+    var User = req.query.User;
 
 
-    UserModel.findOne({'_id':id},(err,doc)=>{
-        doc.Name=Name;
-        doc.LName = LName;
-        doc.Email =Email;
-        doc.Phone =Phone;
-        doc.Skype =Skype;
+    TaskModel.findOne({'_id':id},(err,doc)=>{
+        doc.Name=Information;
+        doc.Description = Description;
+        doc.Deadline =Deadline;
+        doc.State =State;
+        doc.User =User;
         doc.save();
-        res.redirect(301,"/showallusers");
+        res.redirect(301,"/");
     });
 
 
@@ -78,7 +71,7 @@ router.get('/:id', function(req, res, next) {
 router.delete('/del', function(req, res, next) {
     for(let ids in req.body){
         let mongoID= require('mongodb').ObjectID(req.body[ids]);
-        UserModel.remove({_id:mongoID},
+        TaskModel.remove({_id:mongoID},
             (err)=> {
                 if (err) {
                     console.log(err);

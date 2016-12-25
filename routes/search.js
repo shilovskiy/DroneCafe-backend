@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
+var UserModel = require('../model/users');
+var StateModel = require('../model/states');
+var TaskModel = require('../model/tasks');
+var async = require("async");
 /* GET users profile. */
 
 router.get('/', function(req, res, next) {
@@ -8,24 +12,38 @@ router.get('/', function(req, res, next) {
     let SearchStr = req.query.SearchStr.replace('+','\\+');
 
 
-    var collection = db.get().collection('Contacts');
+    async.series([
 
-    collection.find({$or:[
-     {Name:new RegExp(SearchStr,'i')}
-    ,{Lname:new RegExp(SearchStr,'i')}
-    ,{Phone:new RegExp(SearchStr,'i')}
-    ,{Email:new RegExp(SearchStr,'i')}]}).toArray(function (err, docs) {
-        if (err) {
-            console.log(err);
-        } else if (docs.length) {
-            console.log('Found:', docs);
-        } else {
-            console.log('No document(s) found with defined "find" criteria!');
+            function (callback) {
+                TaskModel.find({$or:[
+                    {Name:new RegExp(SearchStr,'i')}
+                    ,{Description:new RegExp(SearchStr,'i')}]}).populate('User').populate('State').sort('Deadline').exec(callback);
+            },
+            function (callback) {
+                UserModel.find({}).exec(callback);
+            },
+            function (callback) {
+                StateModel.find({}).exec(callback);
+            },
+        ]
+        ,function(err,results){
+            res.render('index', { "docs": results[0], "userList":results[1], "stateList":results[2], "title":"ToDo"} );
         }
-        res.render('index', { "docs": docs, "title":`ToDo. Результат поиска ${req.query.SearchStr}`} );
-        //Close connection
-        //db.close();
-    });
+    );
+
+    // TaskModel.find({$or:[
+    //  {Name:new RegExp(SearchStr,'i')}
+    // ,{Description:new RegExp(SearchStr,'i')}]},(err, docs)=> {
+    //     if (err) {
+    //         console.log(err);
+    //     } else if (docs.length) {
+    //         console.log('Found:', docs);
+    //     } else {
+    //         console.log('No document(s) found with defined "find" criteria!');
+    //     }
+    //     res.render('index', { "docs": docs, "title":`ToDo. Результат поиска ${req.query.SearchStr}`} );
+    //
+    // });
 
 });
 

@@ -34,7 +34,7 @@ router.get('/', function(req, res, next) {
 
         ]
         ,function(err,results){
-            let pagination = parseInt(results[3]/perPage,0)+1;
+            let pagination = Math.round(results[3]/perPage,0);
             res.render('index', { "docs": results[0],"pageAmount":pagination, "userList":results[1], "stateList":results[2], "title":"ToDo"} );
         }
     );

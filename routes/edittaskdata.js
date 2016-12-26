@@ -61,12 +61,7 @@ router.get('/save', function(req, res, next) {
         doc.save();
         res.redirect(301,"/");
     });
-
-
 });
-
-
-
 
 router.delete('/del', function(req, res, next) {
     for(let ids in req.body){

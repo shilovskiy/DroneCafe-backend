@@ -17,14 +17,14 @@ block content
       .row
         .col-md-12.col-sm-12.col-xs-12
           .x_panel
-            .x_title
-              h2 #{title}
               .clearfix
-            //Основной контент
-            .x_content
 
+                #datatable_paginate.dataTables_paginate.paging_simple_numbers
+                  ul.pagination
+                    -for (var i=1;i<=pageAmount;i++)
+                      li.paginate_button.active
+                      a(href='./?page='+i, aria-controls='datatable', data-dt-idx='i', tabindex='0')=i
 
-              .table-responsive
                 table.table.table-striped.jambo_table.bulk_action
                   thead
                     tr.headings
@@ -53,6 +53,12 @@ block content
                 .col-md-2
                   //button.btn.btn-primary(type='submit') Cancel
                   button#deleteTasks.btn.btn-success(type='button') Удалить выбранные задачи
+
+
+
+
+
+
             .x_panel
               .x_title
                 h2

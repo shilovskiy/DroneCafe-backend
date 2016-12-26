@@ -20,7 +20,7 @@ router.get('/add', function(req, res, next) {
         Task.Description = req.query.Description
     }
     if (req.query.Deadline!=""){
-        Task.Deadline = req.query.Deadline;//dateformat(req.query.Deadline,'dd.mm.yyyy');
+        Task.Deadline = req.query.Deadline;
     }
     if (req.query.State!=""){
         Task.State = req.query.State

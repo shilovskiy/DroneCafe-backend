@@ -7,13 +7,16 @@ var Schema = db.mongoose.Schema;
 
 
 var UserSchema = new Schema({
-    LName: String,
-    Name: String,
-    Phone:String,
-    Email:String,
-    Skype:String
- }
-, {
+        LName: String,
+        Name: String,
+        Email: {
+            type: String,
+            lowercase: true
+        },
+        Password: String,
+        Credits: Number
+    }
+    , {
         toObject: {
             virtuals: true
         },
@@ -22,13 +25,17 @@ var UserSchema = new Schema({
         }
     }
 );
-UserSchema.virtual('fullname').get(function(){
+UserSchema.virtual('fullname').get(function () {
     return this.LName + ' ' + this.Name;
 
 });
 
-var UserModel = db.mongoose.model('Users', UserSchema);
+UserSchema.virtual('timeStamp').get(function () {
+    return (new Date()).getUTCMilliseconds();
 
+});
+
+var UserModel = db.mongoose.model('users', UserSchema);
 
 
 module.exports = UserModel;

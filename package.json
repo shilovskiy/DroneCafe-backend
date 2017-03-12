@@ -1,6 +1,10 @@
 {
-  "name": "expressaddressbook",
-  "version": "0.0.0",
+  "name": "Drone Cafe",
+  "version": "0.0.1",
+  "author": "Oleg Shilovskiy <shilovskiy@gmail.com>",
+  "license": "MIT",
+  "homepage": "www.leningrad.spb.ru",
+
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -12,6 +16,8 @@
     "express": "~4.14.0",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "angular-socket-io": "^0.7.0",
+    "netology-fake-drone-api": "^1.0.1"
   }
 }

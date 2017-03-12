@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
 var UserModel = require('../model/users');
-var StateModel = require('../model/states');
-var TaskModel = require('../model/tasks');
+var StateModel = require('../model/States');
+var TaskModel = require('../model/items');
 var async = require("async");
 /* GET users profile. */
 
@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
         }
     );
 
-    // TaskModel.find({$or:[
+    // ItemModel.find({$or:[
     //  {Name:new RegExp(SearchStr,'i')}
     // ,{Description:new RegExp(SearchStr,'i')}]},(err, docs)=> {
     //     if (err) {

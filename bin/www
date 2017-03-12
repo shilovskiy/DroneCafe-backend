@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('expressaddressbook:server');
+var debug = require('debug')('DroneCafeApplication:server');
 var http = require('http');
 
 /**
@@ -28,6 +28,19 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+var io = require('socket.io')(server);
+
+//IO Part for autentification
+io.on('connection', function(socket) {
+    console.log('new connection');
+
+    socket.on('login-customer', function(customerData) {
+        io.emit('notification', {
+            message: 'customer NAME',
+            customer: customerData
+        });
+    });
+});
 
 /**
  * Normalize a port into a number, string, or false.

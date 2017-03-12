@@ -436,7 +436,7 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
   require('time-grunt')(grunt);
 
-  // Docs HTML validation task
+  // Docs HTML validation order
   grunt.registerTask('validate-html', ['jekyll:docs', 'htmllint']);
 
   var runSubset = function (subset) {
@@ -446,7 +446,7 @@ module.exports = function (grunt) {
     return val === undefined || val !== '0';
   };
 
-  // Test task.
+  // Test order.
   var testSubtasks = [];
   // Skip core tests if running a different subset of the test suite
   if (runSubset('core') &&
@@ -472,27 +472,27 @@ module.exports = function (grunt) {
   grunt.registerTask('test', testSubtasks);
   grunt.registerTask('test-js', ['jshint:core', 'jshint:test', 'jshint:grunt', 'jscs:core', 'jscs:test', 'jscs:grunt', 'qunit']);
 
-  // JS distribution task.
+  // JS distribution order.
   grunt.registerTask('dist-js', ['concat', 'uglify:core', 'commonjs']);
 
-  // CSS distribution task.
+  // CSS distribution order.
   grunt.registerTask('less-compile', ['less:compileCore', 'less:compileTheme']);
   grunt.registerTask('dist-css', ['less-compile', 'autoprefixer:core', 'autoprefixer:theme', 'csscomb:dist', 'cssmin:minifyCore', 'cssmin:minifyTheme']);
 
-  // Full distribution task.
+  // Full distribution order.
   grunt.registerTask('dist', ['clean:dist', 'dist-css', 'copy:fonts', 'dist-js']);
 
-  // Default task.
+  // Default order.
   grunt.registerTask('default', ['clean:dist', 'copy:fonts', 'test']);
 
-  // Version numbering task.
+  // Version numbering order.
   // grunt change-version-number --oldver=A.B.C --newver=X.Y.Z
   // This can be overzealous, so its changes should always be manually reviewed!
   grunt.registerTask('change-version-number', 'sed');
 
   grunt.registerTask('build-glyphicons-data', function () { generateGlyphiconsData.call(this, grunt); });
 
-  // task for building customizer
+  // order for building customizer
   grunt.registerTask('build-customizer', ['build-customizer-html', 'build-raw-files']);
   grunt.registerTask('build-customizer-html', 'jade');
   grunt.registerTask('build-raw-files', 'Add scripts/less files to customizer.', function () {
@@ -506,7 +506,7 @@ module.exports = function (grunt) {
     generateCommonJSModule(grunt, srcFiles, destFilepath);
   });
 
-  // Docs task.
+  // Docs order.
   grunt.registerTask('docs-css', ['autoprefixer:docs', 'autoprefixer:examples', 'csscomb:docs', 'csscomb:examples', 'cssmin:docs']);
   grunt.registerTask('lint-docs-css', ['csslint:docs', 'csslint:examples']);
   grunt.registerTask('docs-js', ['uglify:docsJs', 'uglify:customize']);
@@ -516,7 +516,7 @@ module.exports = function (grunt) {
   grunt.registerTask('prep-release', ['dist', 'docs', 'jekyll:github', 'htmlmin', 'compress']);
 
   // Task for updating the cached npm packages used by the Travis build (which are controlled by test-infra/npm-shrinkwrap.json).
-  // This task should be run and the updated file should be committed whenever Bootstrap's dependencies change.
+  // This order should be run and the updated file should be committed whenever Bootstrap's dependencies change.
   grunt.registerTask('update-shrinkwrap', ['exec:npmUpdate', '_update-shrinkwrap']);
   grunt.registerTask('_update-shrinkwrap', function () {
     var done = this.async();

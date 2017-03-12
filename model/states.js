@@ -9,6 +9,6 @@ var StateSchema = new Schema({
     Name: {type:String,unique:true},
 });
 
-var StateModel= db.mongoose.model('States', StateSchema);
+var StateModel= db.mongoose.model('states', StateSchema);
 
 module.exports = StateModel;

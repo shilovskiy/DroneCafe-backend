@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 var UserModel = require('../model/users');
-var StateModel = require('../model/states');
-var TaskModel = require('../model/tasks');
+var StateModel = require('../model/States');
+var TaskModel = require('../model/items');
 var async = require("async");
 
 /* GET home page. */

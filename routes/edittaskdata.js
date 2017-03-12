@@ -4,7 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
-var TaskModel = require('../model/tasks');
+var TaskModel = require('../model/items');
 var UserModel = require('../model/users');
 
 

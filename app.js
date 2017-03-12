@@ -39,8 +39,8 @@ app.use('/showallusers', users);
 app.use('/login', user);
 app.use('/orders', order);
 
-app.use('/edituserdata', editusers);
-app.use('/edittaskdata', edittasks);
+// app.use('/edituserdata', editusers);
+// app.use('/edittaskdata', edittasks);
 
 app.use('/newuser', editusers);
 app.use('/search', search);

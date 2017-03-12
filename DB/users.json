@@ -1,0 +1,112 @@
+{ 
+    "_id" : ObjectId("58aeba1ea57160293ce0cefc"), 
+    "LName" : "Lyao", 
+    "Name" : "q", 
+    "Email" : "Syao.Lyao@mail.cm1", 
+    "Password" : "qq@qq", 
+    "Credits" : NumberInt(7432)
+}
+{ 
+    "_id" : ObjectId("58bf8ef3f90c562aa846d49e"), 
+    "LName" : "Wao", 
+    "Name" : "w", 
+    "Email" : "Syao.Wao@mail.cm1", 
+    "Password" : "qq", 
+    "Credits" : NumberInt(100)
+}
+{ 
+    "_id" : ObjectId("58c2c61d497d4b1fc00e2731"), 
+    "Name" : "User1489159709839", 
+    "Credits" : NumberInt(100), 
+    "Password" : "shilovskiy@gmail.com", 
+    "LName" : "фф", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c2c716dc94d6335858ce5a"), 
+    "Name" : "User1489159958257", 
+    "Credits" : NumberInt(100), 
+    "Password" : "qww@ew.wrf", 
+    "LName" : "qq", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c2c99ddc94d6335858ce62"), 
+    "Name" : "User1489160605160", 
+    "Credits" : NumberInt(100), 
+    "Password" : "3242@2342", 
+    "LName" : "213", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c2cb00dc94d6335858ce67"), 
+    "Name" : "User1489160960694", 
+    "Credits" : NumberInt(-400), 
+    "Password" : "qww@ew.wrf", 
+    "LName" : "213", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c2d83787073b2e40995c88"), 
+    "Name" : "User1489164343266", 
+    "Credits" : NumberInt(-130), 
+    "Password" : "qww@ew.wrf", 
+    "LName" : "qq", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c3a2e96da9be367c98a22b"), 
+    "Name" : "User1489216233779", 
+    "Credits" : NumberInt(100), 
+    "Password" : "qwd@wedxw", 
+    "LName" : "oleg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c3a3066da9be367c98a22e"), 
+    "Name" : "User1489216262948", 
+    "Credits" : NumberInt(100), 
+    "Password" : "qww@ew.wrf", 
+    "LName" : "oleg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c42a6c7cc056264cc90b76"), 
+    "Name" : "User1489250924539", 
+    "Credits" : NumberInt(100), 
+    "Password" : "qww@ew.wrf", 
+    "LName" : "qq", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c44b0d32f3d722cc10b65c"), 
+    "Name" : "User1489259277508", 
+    "Credits" : NumberInt(100), 
+    "Password" : "qq@qq", 
+    "LName" : "йцыйчцвц34", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c4679a9ae38c2d502cb96e"), 
+    "Name" : "User1489266586100", 
+    "Credits" : NumberInt(100), 
+    "Password" : "qs@qs", 
+    "LName" : "qs", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c467f827574f30602762e1"), 
+    "Name" : "User1489266680426", 
+    "Credits" : NumberInt(100), 
+    "Password" : "qw@qw", 
+    "LName" : "qw", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58c46848f7501e2b18d47c02"), 
+    "Name" : "User1489266770113", 
+    "Credits" : NumberInt(100), 
+    "Password" : "qw@qw", 
+    "LName" : "qw", 
+    "__v" : NumberInt(0)
+}

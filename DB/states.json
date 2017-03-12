@@ -1,0 +1,30 @@
+{ 
+    "_id" : ObjectId("589a11960c9a8fb863f671e6"), 
+    "Name" : "Ordered", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("589a11960c9a8fb863f671e9"), 
+    "Name" : "InDelivery", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("589a11960c9a8fb863f671eb"), 
+    "Name" : "Problem", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("589a11960c9a8fb863f671ed"), 
+    "Name" : "Ready", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58b1b6150c9a8fb863f7e93f"), 
+    "Name" : "New", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("58b1b6150c9a8fb863f7e941"), 
+    "Name" : "InProgress", 
+    "__v" : NumberInt(0)
+}

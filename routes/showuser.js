@@ -17,7 +17,7 @@ router.post('/auth', function (req, res, next) {
         let pass = req.body['password'];
 
 
-        var query = {'Name': username, 'Password': pass};
+        var query = {'LName': username, 'Password': pass};
 
 
         async.auto({
@@ -30,7 +30,7 @@ router.post('/auth', function (req, res, next) {
             User: ['isUserExist', function (user, callback) {
                 if (user.isUserExist.bool) {
 
-                    callback(undefined, user.isUserExist.uObj);
+                    callback(undefined, user.isUserExist.uObj[0]);
 
                 }
                 else {
@@ -60,7 +60,7 @@ router.post('/auth', function (req, res, next) {
                 // results is now equal to: {one: 1, two: 2}
                 console.log(results);
                 res.writeHead(206, 'OK', {'Content-Type': 'application/json'});
-                res.write(JSON.stringify(results.User[0]));
+                res.write(JSON.stringify(results.User));
                 res.end();
             }]
         });

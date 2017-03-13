@@ -440,6 +440,7 @@ router.post('/pullOrderToState', function (req, res, next) {
                         .then(() => console.log('Доставлено'))
                         .catch(() => console.log('Возникли сложности'));
                 }
+
                 res.writeHead(200, 'OK', {'Content-Type': 'application/json'});
                 res.write(JSON.stringify(results));
                 res.end();

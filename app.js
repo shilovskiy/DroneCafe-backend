@@ -12,14 +12,11 @@ db.mongoose.connect(dburl);
 var index = require('./routes/index');
 var user = require('./routes/showuser');
 var order = require('./routes/orders');
-
-var users = require('./routes/users');
-var editusers = require('./routes/edituserdata');
-var edittasks = require('./routes/edittaskdata');
-
+//var users = require('./routes/users');
 var statistic = require('./routes/statistic');
 
-var search = require('./routes/search');
+//var search = require('./routes/search');
+
 var app = express();
 
 // view engine setup
@@ -35,17 +32,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Project Routes
 app.use('/', index);
-app.use('/showallusers', users);
 app.use('/login', user);
 app.use('/orders', order);
-
-// app.use('/edituserdata', editusers);
-// app.use('/edittaskdata', edittasks);
-
-app.use('/newuser', editusers);
-app.use('/search', search);
-
 app.use('/statistic', statistic);
+
+//app.use('/showallusers', users);
+// app.use('/newuser', editusers);
+// app.use('/search', search);
+
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Страница не найдена');

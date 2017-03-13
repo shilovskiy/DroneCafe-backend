@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 /**
  * Module dependencies.
@@ -15,9 +14,7 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+
 
 var server = http.createServer(app);
 
@@ -30,7 +27,7 @@ server.on('error', onError);
 server.on('listening', onListening);
 var io = require('socket.io')(server);
 
-//IO Part for autentification
+//IO Part for Drone Engine
 io.on('connection', function(socket) {
     console.log('new connection');
 

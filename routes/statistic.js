@@ -6,7 +6,7 @@ var StateModel = require('../model/States');
 var TaskModel = require('../model/items');
 var async = require("async");
 
-/* GET home page. */
+/* Статистика. Эксперимент. */
 router.get('/', function(req, res, next) {
 
     async.series([
@@ -36,12 +36,7 @@ router.get('/', function(req, res, next) {
                 }
             ).sort('-count').exec(callback);
         },
-        // function (callback) {
-        //     UserModel.find({}).exec(callback);
-        // },
-        // function (callback) {
-        //     StateModel.find({}).exec(callback);
-        // },
+
         ]
         ,function(err,results){
             res.render('statistic', { "docs": results[0]} );//, "userList":results[1], "stateList":results[2], "title":"ToDo"

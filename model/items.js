@@ -8,14 +8,6 @@ var Schema = db.mongoose.Schema;
 var ItemSchema = new Schema({
     title: {type:String}, //,unique:true
     image: String,
-    // User:{
-    //     type: Schema.ObjectId,
-    //     ref: 'Users'
-    // },
-    // State:{
-    //     type:Schema.ObjectId,
-    //     ref:'States'
-    // },
     rating:Number,
     price:Number
 

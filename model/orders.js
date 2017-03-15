@@ -41,19 +41,6 @@ var OrderSchema = new Schema({
 
 var OrderModel = db.mongoose.model('orders', OrderSchema); //Case sensetive model name!!
 
-// OrderModel.methods.getTotalPrice = function(cb) {
-//     return this.items.reduce((a, b) => {
-//         return b.price == null ? a : a + b.price;
-//     }, 0);
-// };
-
-
-// OrderSchema.methods.substructCreditsFromUser = function(callback) {
-//     db.mongoose.model('users').find({_id: this._id}, function(err, OneUser) {
-//         callback(err, OneUser);
-//     });
-// };
-
 OrderSchema.virtual('TotalPrice').get(function () {
     return (this.items.length > 0) ? getOrderTotalPrice(this.items) : 0;
 });

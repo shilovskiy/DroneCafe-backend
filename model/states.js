@@ -6,9 +6,12 @@ var db = require('./db');
 var Schema = db.mongoose.Schema;
 
 var StateSchema = new Schema({
-    Name: {type:String,unique:true},
+    Name: {
+        type: String,
+        unique: true
+    },
 });
 
-var StateModel= db.mongoose.model('states', StateSchema);
+var StateModel = db.mongoose.model('states', StateSchema);
 
 module.exports = StateModel;
